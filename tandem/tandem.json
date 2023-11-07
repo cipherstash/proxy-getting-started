@@ -1,0 +1,11 @@
+{
+  "port":5442,
+  "passthrough":true,
+  "db_host":"postgres",
+  "db_port":5432,
+  "db_name":"stash",
+  "db_user":"postgres",
+  "db_password":"password",
+  "db_pool_size":1,
+  "log_level":"info"
+}

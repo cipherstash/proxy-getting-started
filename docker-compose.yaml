@@ -1,0 +1,24 @@
+version: "3.7"
+networks:
+  postgres:
+    driver: bridge
+services:
+  postgres:
+    build:
+      context: postgres
+    environment:
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5432:5432
+    networks:
+      - postgres
+
+  server:
+    build:
+      context: server
+    networks:
+      - postgres
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
