@@ -5,8 +5,6 @@ const app = express()
 const port = process.env.PORT || 3000
 const fs = require('fs');
 
-var sql = fs.readFileSync('migrations.sql').toString();
-
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'postgres',
