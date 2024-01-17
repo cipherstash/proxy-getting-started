@@ -26,5 +26,35 @@ services:
     depends_on:
       - postgres
 
+  tandem:
+    image: cipherstash/tandem-pgcat:local
+    environment:
+      LOG_LEVEL: debug
+      CS_PASSTHROUGH: true
+
+      # tandem connection options
+      CS_PORT: 6432
+      CS_USERNAME: postgres
+      CS_PASSWORD: password
+
+      # connect to postgres
+      CS_DATABASE__HOST: postgres
+      CS_DATABASE__PORT: 5432
+      CS_DATABASE__NAME: stash
+      CS_DATABASE__USERNAME: postgres
+      CS_DATABASE__PASSWORD: password
+
+      # setup using stash-cli
+      CS_WORKSPACE_ID: fill_me_in
+      CS_CLIENT_ID: fill_me_in
+      CS_CLIENT_KEY: fill_me_in
+      CS_CLIENT_ACCESS_KEY: fill_me_in
+    volumes:
+      - ./tandem/tandem.toml:/etc/tandem/tandem.toml
+    ports:
+      - 6432:6432
+    depends_on:
+      - postgres
+
 volumes:
   postgres-data:
