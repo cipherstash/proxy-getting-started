@@ -8,7 +8,7 @@ const fs = require('fs');
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'postgres',
-  host: 'postgres',
+  host: 'tandem',
   database: 'stash',
   password: 'password',
   port: 5432,

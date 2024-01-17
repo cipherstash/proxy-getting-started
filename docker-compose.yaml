@@ -1,24 +1,30 @@
 version: "3.7"
-networks:
-  postgres:
-    driver: bridge
+
 services:
   postgres:
-    build:
-      context: postgres
+    image: postgres:16
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_PASSWORD=password
+      POSTGRES_DB: stash
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
     ports:
       - 5432:5432
-    networks:
-      - postgres
 
   server:
-    build:
-      context: server
-    networks:
-      - postgres
+    image: node:20
+    command: sh -c "npm install && npm run start" 
+    working_dir: /server
+    volumes:
+      - ./server/package.json:/server/package.json
+      - ./server/package-lock.json:/server/package-lock.json
+      - ./server/server.js:/server/server.js
     ports:
       - 3000:3000
     depends_on:
       - postgres
+
+volumes:
+  postgres-data:
