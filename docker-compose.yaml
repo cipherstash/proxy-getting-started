@@ -27,7 +27,7 @@ services:
       - postgres
 
   tandem:
-    image: cipherstash/tandem-pgcat:local
+    image: cipherstash/tandem-pgcat
     environment:
       LOG_LEVEL: debug
       CS_PASSTHROUGH: true
