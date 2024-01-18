@@ -1,7 +1,0 @@
-{
-  "port":5442,
-  "passthrough":true,
-  "database_url": "postgres://postgres:password@postgres:5432/stash",
-  "db_pool_size":1,
-  "log_level":"info"
-}
