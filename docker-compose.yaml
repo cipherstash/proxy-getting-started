@@ -27,7 +27,6 @@ services:
       - postgres
 
   tandem:
-    platform: linux/x86_64
     image: cipherstash/tandem-pgcat
     environment:
       LOG_LEVEL: debug
@@ -51,6 +50,7 @@ services:
       CS_CLIENT_KEY: fill_me_in
       CS_CLIENT_ACCESS_KEY: fill_me_in
     volumes:
+      # optionally load config from a file
       - ./tandem/tandem.toml:/etc/tandem/tandem.toml
     ports:
       - 6432:6432
